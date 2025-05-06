@@ -1,103 +1,59 @@
-import Image from "next/image";
+import { Zap } from "lucide-react"
 
-export default function Home() {
+import { Sparkles } from "lucide-react"
+
+
+const HomePage = () => {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <>
+      <section className="fixed inset-0 min-h-screen overflow-hidden flex items-center bg-zinc-900">
+        {/* Background elements */}
+        <div className="absolute inset-0 retro-grid opacity-40"></div>
+        <div className="absolute inset-0 mesh-gradient"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+        {/* Floating orbs */}
+        <div className="absolute top-1/4 -left-20 w-80 h-80 bg-violet-600/20 rounded-full filter blur-3xl animate-float"></div>
+        <div className="absolute bottom-1/4 -right-20 w-80 h-80 bg-purple-500/20 rounded-full filter blur-3xl animate-float-delay-2"></div>
+        <div className="absolute top-3/4 left-1/3 w-64 h-64 bg-fuchsia-600/20 rounded-full filter blur-3xl animate-float-delay-4"></div>
+
+        {/* hero content */}
+
+        <div className="sm:m-0 md:ml-[3vw] lg:ml-[5vw] xl:ml-[10vw] 2xl:ml-[15vw] px-4 z-10 sm:w-full">
+          {/* Your content */}
+          <div className="text-white text-md font-semibold bg-gray-400 p-2 px-3.5 rounded-full mb-6 glassmorphism flex w-max items-center justify-between">
+          <Sparkles className="h-4 w-4 mr-2 text-purple-400" />
+          <span className="">Time-limited Flash Sales</span>
+          </div>
+          <div className="font-syne">
+            <h1 className="text-5xl text-white md:text-7xl lg:text-8xl font-extrabold mb-6 tracking-tight neon-glow">
+              Future Drops.<br />
+              <span className="bg-gradient-to-r from-purple-400 via-violet-500 to-fuchsia-500 bg-clip-text text-transparent">
+                Limited Supply.
+              </span>
+            </h1>
+            <p className="text-xl md:text-2xl mb-10 text-zinc-400 max-w-xl">
+              Tomorrow's essentials, today's rarities. Secure exclusive items before they vanish forever.
+            </p>
+
+            <div className="flex flex-wrap gap-6">
+              <button className="neon-button group">
+                Shop Collection
+                <Zap className="ml-2 h-4 w-4 inline-block transition-transform group-hover:rotate-12" />
+              </button>
+              
+              <button className="neo-brutalism px-8 py-3 rounded-full">
+                Explore Latest
+              </button>
+            </div>
+          </div>
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
-  );
+        <div className="absolute top-6 right-6 h-24 w-[1px] bg-gradient-to-b from-transparent via-purple-500 to-transparent"></div>
+        <div className="absolute top-6 right-6 h-[1px] w-24 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+        <div className="absolute bottom-6 left-6 h-24 w-[1px] bg-gradient-to-b from-transparent via-purple-500 to-transparent"></div>
+        <div className="absolute bottom-6 left-6 h-[1px] w-24 bg-gradient-to-r from-transparent via-purple-500 to-transparent"></div>
+      </section>
+    </>
+  )
 }
+
+export default HomePage
