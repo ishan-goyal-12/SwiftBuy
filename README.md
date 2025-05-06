@@ -1,3 +1,6 @@
+# SwiftBuy
+A flash sale platform where various types of sales are listed which forces customer to buy the product asap
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
