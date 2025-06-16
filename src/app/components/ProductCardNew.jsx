@@ -2,10 +2,10 @@ import React from 'react';
 import CountdownTimer from './CountdownTimer.jsx';
 
 function ProductCardNew({ product, addToCart }) {
-    const discountPercent = Math.round(((product.originalPrice - product.salePrice) / product.originalPrice) * 100);
+    const discountPercent = 51
     
     return (
-        <div className="bg-white rounded-lg shadow-md overflow-hidden border">
+        <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="relative">
                 <img
                     src={product.image}
@@ -34,7 +34,7 @@ function ProductCardNew({ product, addToCart }) {
 
                 <button
                     onClick={() => addToCart(product)}
-                    className="w-full bg-red-600 text-white py-2 px-4 rounded-md font-medium"
+                    className="w-full bg-red-600 text-white py-2 px-4 rounded-md font-medium cursor-pointer"
                 >
                     Add to Cart
                 </button>

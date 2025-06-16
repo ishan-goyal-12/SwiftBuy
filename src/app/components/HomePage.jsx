@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react'
-import { Search } from 'lucide-react'
 import ProductCardNew from './ProductCardNew'
 import Navbar from './Navbar'
 
@@ -46,7 +45,7 @@ const HomePage = () => {
             <div className="bg-gray-50 py-4">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="relative max-w-lg mx-auto">
-                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-700 h-5 w-5" />
+                        <div className="absolute left-3 top-1/2 transform -translate-y-1/2">🔍</div>
                         <input
                             type="text"
                             placeholder="Search for flash deals, products..."

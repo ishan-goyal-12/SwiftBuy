@@ -1,6 +1,5 @@
 'use client'
 import React, { useState } from 'react';
-import { ShoppingCart, Zap } from 'lucide-react';
 
 function Navbar({ cartCount }) {
   const [currentPage, setCurrentPage] = useState('home');
@@ -16,11 +15,11 @@ function Navbar({ cartCount }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
-          <div 
+          <div
             className="flex items-center cursor-pointer"
             onClick={() => setCurrentPage('home')}
           >
-            <Zap className="h-8 w-8 text-red-600 mr-2" />
+            <div className="mr-2 scale-180">⚡️</div>
             <span className="text-2xl font-bold text-gray-900">SwiftBuy</span>
           </div>
 
@@ -31,11 +30,10 @@ function Navbar({ cartCount }) {
                 <button
                   key={item.id}
                   onClick={() => setCurrentPage(item.id)}
-                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                    currentPage === item.id
+                  className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${currentPage === item.id
                       ? 'bg-red-100 text-red-700'
                       : 'text-gray-700 hover:text-red-600'
-                  }`}
+                    }`}
                 >
                   {item.label}
                 </button>
@@ -46,12 +44,12 @@ function Navbar({ cartCount }) {
           {/* Cart and Auth Buttons */}
           <div className="flex flex-row items-center space-x-4">
             <div className="relative">
-              <ShoppingCart className="h-6 w-6 text-gray-700 cursor-pointer" />
-              (
+              <div className="cursor-pointer mr-2 scale-140">🛒</div>
+              {
                 <span className="absolute -top-2 -right-2 bg-red-600 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cartCount}
                 </span>
-              )
+              }
             </div>
             <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium">
               Login
