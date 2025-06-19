@@ -1,9 +1,11 @@
 import React from 'react';
 import CountdownTimer from './CountdownTimer.jsx';
 
-function ProductCardNew({ product, addToCart }) {
-    const discountPercent = 51
-    
+function ProductCard({ product, addToCart }) {
+    const discountPercent = Math.round(
+        ((product.originalPrice - product.salePrice) / product.originalPrice) * 100
+    );
+
     return (
         <div className="bg-white rounded-lg shadow-md overflow-hidden">
             <div className="relative">
@@ -18,13 +20,15 @@ function ProductCardNew({ product, addToCart }) {
             </div>
 
             <div className="p-4">
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{product.title}</h3>
-                <p className="text-gray-600 text-sm mb-3">{product.description}</p>
+                <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">{product.title}</h3>
+                <p className="text-gray-600 text-sm mb-3 line-clamp-2 sm:line-clamp-2 md:line-clamp-2 lg:line-clamp-2 xl:line-clamp-2 2xl:line-clamp-2 max-[640px]:line-clamp-3">
+                    {product.description}
+                </p>
 
                 <div className="flex items-center justify-between mb-3">
                     <div className="flex items-center space-x-2">
-                        <span className="text-2xl font-bold text-red-600">${product.salePrice}</span>
-                        <span className="text-lg text-gray-500 line-through">${product.originalPrice}</span>
+                        <span className="text-2xl font-bold text-red-600">₹{product.salePrice}</span>
+                        <span className="text-lg text-gray-500 line-through">₹{product.originalPrice}</span>
                     </div>
                 </div>
 
@@ -43,4 +47,4 @@ function ProductCardNew({ product, addToCart }) {
     );
 }
 
-export default ProductCardNew;
+export default ProductCard;

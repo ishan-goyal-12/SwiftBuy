@@ -1,9 +1,7 @@
 'use client'
-import { useState } from 'react';
-import HomePage from "./components/HomePage";
+import HomePage from "./Pages/HomePage";
 
 export default function Home() {
-
   return (
     <div>
       <HomePage />

@@ -1,5 +1,5 @@
-import HomePage from "./components/HomePage";
-import Navbar from "./components/Navbar";
+'use client';
+import Footer from "./components/Footer";
 import "./globals.css";
 
 export default function RootLayout({ children }) {
@@ -7,6 +7,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         {children}
+        <Footer />
       </body>
     </html>
   );

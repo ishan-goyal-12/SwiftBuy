@@ -1,7 +1,8 @@
 'use client'
 import React, { useState } from 'react'
-import ProductCardNew from './ProductCardNew'
-import Navbar from './Navbar'
+import ProductCard from '../components/ProductCard'
+import Navbar from '../components/Navbar'
+import Footer from '../components/Footer'
 
 
 const HomePage = () => {
@@ -14,33 +15,57 @@ const HomePage = () => {
     const flashProducts = [
         {
             id: 1,
-            title: "Wireless Headphones",
-            description: "Premium quality wireless headphones with noise cancellation",
-            originalPrice: 199.99,
-            salePrice: 99.99,
-            image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400",
+            title: "Premium Perfume",
+            description: "Premium quality oud based perfume with long-lasting fragrance",
+            originalPrice: 7999,
+            salePrice: 1699,
+            image: "https://images.pexels.com/photos/8361478/pexels-photo-8361478.jpeg?auto=compress&cs=tinysrgb&w=1200",
         },
         {
             id: 2,
             title: "Wireless Headphones",
-            description: "Premium quality wireless headphones with noise cancellation",
-            originalPrice: 199.99,
-            salePrice: 99.99,
+            description: "Premium quality wireless headphones with ANC technology",
+            originalPrice: 4000,
+            salePrice: 1499,
             image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400",
         },
         {
             id: 3,
-            title: "Wireless Headphones",
-            description: "Premium quality wireless headphones with noise cancellation",
-            originalPrice: 199.99,
-            salePrice: 99.99,
-            image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400",
+            title: "Rosemary Essential Oil",
+            description: "100% pure rosemary essential oil for aromatherapy and relaxation",
+            originalPrice: 799,
+            salePrice: 299,
+            image: "https://images.pexels.com/photos/8490222/pexels-photo-8490222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
         }
     ];
 
+
+    const testimonials = [
+    {
+      id: 1,
+      name: "Sarah Johnson",
+      text: "Amazing deals! I saved over $200 on electronics during their flash sale.",
+      photo: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      id: 2,
+      name: "Mike Chen",
+      text: "Fast shipping and great customer service. Highly recommend SwiftBuy!",
+      photo: "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    },
+    {
+      id: 3,
+      name: "Emily Davis",
+      text: "The countdown timers create real urgency. Got some amazing bargains!",
+      photo: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    }
+  ];
+
     return (
         <div>
-            <Navbar cartCount={cartCount} />
+            <Navbar cartCount={cartCount}
+            currentPages={'home'} />
+            
             {/* Search Bar */}
             <div className="bg-gray-50 py-4">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,7 +111,7 @@ const HomePage = () => {
                                     rows="3"
                                     className="w-full px-4 py-3 border border-gray-300 rounded-lg"
                                 ></textarea>
-                                <button className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold">
+                                <button className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold cursor-pointer">
                                     Subscribe to Alerts
                                 </button>
                             </form>
@@ -105,7 +130,7 @@ const HomePage = () => {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {flashProducts.map((product) => (
-                            <ProductCardNew
+                            <ProductCard
                                 key={product.id}
                                 product={product}
                                 addToCart={addToCart}
@@ -160,6 +185,35 @@ const HomePage = () => {
                                 className="rounded-lg shadow-lg"
                             />
                         </div>
+                    </div>
+                </div>
+            </div>
+
+            {/* Testimonials */}
+            <div className="py-16 bg-gray-50">
+                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div className="text-center mb-12">
+                        <h2 className="text-3xl font-bold text-gray-900 mb-4">What Our Customers Say</h2>
+                        <p className="text-lg text-gray-600">Thousands of happy customers saving money every day</p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {testimonials.map((testimonial) => (
+                            <div key={testimonial.id} className="bg-white rounded-lg p-6 shadow-md">
+                                <p className="text-gray-600 mb-4">"{testimonial.text}"</p>
+                                <div className="flex items-center">
+                                    <img
+                                        src={testimonial.photo}
+                                        alt={testimonial.name}
+                                        className="w-12 h-12 rounded-full mr-4"
+                                    />
+                                    <div>
+                                        <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                                        <p className="text-sm text-gray-500">Verified Customer</p>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
                     </div>
                 </div>
             </div>
