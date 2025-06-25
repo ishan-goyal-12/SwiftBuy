@@ -5,7 +5,7 @@ import { api } from '../utils/api.js';
 import { transformProduct, formatCategoryName } from '../utils/productHelpers.js';
 import Navbar from '../components/Navbar.jsx';
 
-function ProductsPage({ addToCart }) {
+function ProductsPage() {
     const [products, setProducts] = useState([]);
     const [categories, setCategories] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
@@ -19,7 +19,6 @@ function ProductsPage({ addToCart }) {
         setCartCount(prev => prev + 1);
     };
 
-
     // Fetch all products and categories on component mount
     useEffect(() => {
         const fetchData = async () => {
@@ -29,7 +28,6 @@ function ProductsPage({ addToCart }) {
                     api.getAllProducts(),
                     api.getCategories()
                 ]);
-
                 const transformedProducts = productsData.map(transformProduct);
                 setProducts(transformedProducts);
                 setCategories(categoriesData);
@@ -44,10 +42,34 @@ function ProductsPage({ addToCart }) {
         fetchData();
     }, []); // This useEffect runs only once when the component mounts (loads when page refreshes)
 
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            window.scrollTo(0, 0);
+        }
+    }, []);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [selectedCategory]);
+
     // Filter products by category
     const filteredProducts = selectedCategory === 'all'
         ? products
         : products.filter(product => product.category === selectedCategory);
+
+    // Pagination state
+    const [currentPage, setCurrentPage] = useState(1);
+    const productsPerPage = 12;
+
+    // Calculate paginated products
+    const indexOfLastProduct = currentPage * productsPerPage;
+    const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
+    const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    let pages = [];
+    for (let i = 1; i <= totalPages; i++) {
+        pages.push(i);
+    }
 
     const faqs = [
         {
@@ -71,6 +93,32 @@ function ProductsPage({ addToCart }) {
             answer: "We offer free standard shipping (5-7 days) and express shipping (2-3 days) for an additional fee."
         }
     ];
+
+    const scrollToCategorySelection = () => {
+        const element = document.querySelector('.category-selection');
+        if (element) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    };
+
+    
+
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+        setTimeout(scrollToCategorySelection, 0);
+    };
+    const handlePrev = () => {
+        if (currentPage > 1) {
+            setCurrentPage(currentPage - 1);
+            setTimeout(scrollToCategorySelection, 0);
+        }
+    };
+    const handleNext = () => {
+        if (currentPage < totalPages) {
+            setCurrentPage(currentPage + 1);
+            setTimeout(scrollToCategorySelection, 0);
+        }
+    };
 
     if (loading) {
         return (
@@ -105,7 +153,7 @@ function ProductsPage({ addToCart }) {
                     <h1 className="text-4xl lg:text-6xl font-bold mb-6">
                         Flash Sale Products
                     </h1>
-                    <p className="text-xl">
+                    <p className="text-xl category-selection">
                         Discover amazing deals with limited-time offers. Save up to 70% on premium products!
                     </p>
                 </div>
@@ -117,7 +165,7 @@ function ProductsPage({ addToCart }) {
                     <div className="flex flex-wrap justify-center gap-3 mt-6">
                         <button
                             onClick={() => setSelectedCategory('all')}
-                            className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === 'all'
+                            className={`px-4 py-2 cursor-pointer rounded-full text-sm font-medium transition-colors ${selectedCategory === 'all'
                                 ? 'bg-purple-600 text-white'
                                 : 'bg-white text-gray-700 hover:bg-purple-100'
                                 }`}
@@ -125,17 +173,18 @@ function ProductsPage({ addToCart }) {
                             All Products ({products.length})
                         </button>
                         {categories.map((category) => {
-                            const count = products.filter(p => p.category === category).length;
+                            const count = products.filter(p => p.category === category.slug).length;
+                            if (count === 0) return null;
                             return (
                                 <button
-                                    key={category}
-                                    onClick={() => setSelectedCategory(category)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedCategory === category
+                                    key={category.url}
+                                    onClick={() => setSelectedCategory(category.slug)}
+                                    className={`px-4 py-2 cursor-pointer rounded-full text-sm font-medium transition-colors ${selectedCategory === category.slug
                                         ? 'bg-purple-600 text-white'
                                         : 'bg-white text-gray-700 hover:bg-purple-100'
                                         }`}
                                 >
-                                    {formatCategoryName(category)} ({count})
+                                    {category.name} ({count})
                                 </button>
                             );
                         })}
@@ -150,16 +199,49 @@ function ProductsPage({ addToCart }) {
                         <p className="text-lg text-gray-600">No products found in this category.</p>
                     </div>
                 ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
-                        {filteredProducts.map((product) => (
-                            <div key={product.id} className="cursor-pointer">
-                                <ProductCard
-                                    product={product}
-                                    addToCart={addToCarts}
-                                />
+                    <>
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8 mb-16">
+                            {currentProducts.map((product) => (
+                                <div key={product.id} className="cursor-pointer">
+                                    <ProductCard
+                                        product={product}
+                                        addToCart={addToCarts}
+                                    />
+                                </div>
+                            ))}
+                        </div>
+
+                        {/* Pagination Controls */}
+                        {totalPages > 1 && (
+                            <div className="flex justify-center items-center gap-2 mb-8">
+                                {currentPage !== 1 && (
+                                    <button
+                                        onClick={handlePrev}
+                                        className="px-4 py-2 rounded-lg font-semibold cursor-pointer transition-colors bg-purple-600 text-white hover:bg-purple-700"
+                                    >
+                                        Previous
+                                    </button>
+                                )}
+                                {pages.map((page) => (
+                                    <button
+                                        key={page}
+                                        onClick={() => handlePageChange(page)}
+                                        className={`px-3 py-2 cursor-pointer rounded-lg font-semibold transition-colors ${currentPage === page ? 'bg-purple-700 text-white' : 'bg-white text-purple-700 hover:bg-purple-100'}`}
+                                    >
+                                        {page}
+                                    </button>
+                                ))}
+                                {currentPage !== totalPages && (
+                                    <button
+                                        onClick={handleNext}
+                                        className="px-4 py-2 rounded-lg cursor-pointer font-semibold transition-colors bg-purple-600 text-white hover:bg-purple-700"
+                                    >
+                                        Next
+                                    </button>
+                                )}
                             </div>
-                        ))}
-                    </div>
+                        )}
+                    </>
                 )}
             </div>
 

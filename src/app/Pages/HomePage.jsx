@@ -1,73 +1,62 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ProductCard from '../components/ProductCard'
 import Navbar from '../components/Navbar'
-import Footer from '../components/Footer'
+import { api } from '../utils/api.js'
+import { transformProduct } from '../utils/productHelpers'
+import { useRouter } from 'next/navigation'
 
 
 const HomePage = () => {
     const [cartCount, setCartCount] = useState(0);
+    const [flashProducts, setFlashProducts] = useState([]);
+    const router = useRouter();
+
+    useEffect(() => {
+        const fetchProducts = async () => {
+            try {
+                const products = await api.getAllProducts();
+                const transformed = products.slice(0, 3).map(transformProduct);
+                setFlashProducts(transformed);
+            } catch (err) {
+                setFlashProducts([]);
+            }
+        };
+        fetchProducts();
+    }, []);
 
     const addToCart = (product) => {
         setCartCount(prev => prev + 1);
     };
 
-    const flashProducts = [
+    const testimonials = [
         {
             id: 1,
-            title: "Premium Perfume",
-            description: "Premium quality oud based perfume with long-lasting fragrance",
-            originalPrice: 7999,
-            salePrice: 1699,
-            image: "https://images.pexels.com/photos/8361478/pexels-photo-8361478.jpeg?auto=compress&cs=tinysrgb&w=1200",
+            name: "Sarah Johnson",
+            text: "Amazing deals! I saved over $200 on electronics during their flash sale.",
+            photo: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         },
         {
             id: 2,
-            title: "Wireless Headphones",
-            description: "Premium quality wireless headphones with ANC technology",
-            originalPrice: 4000,
-            salePrice: 1499,
-            image: "https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?auto=compress&cs=tinysrgb&w=400",
+            name: "Mike Chen",
+            text: "Fast shipping and great customer service. Highly recommend SwiftBuy!",
+            photo: "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         },
         {
             id: 3,
-            title: "Rosemary Essential Oil",
-            description: "100% pure rosemary essential oil for aromatherapy and relaxation",
-            originalPrice: 799,
-            salePrice: 299,
-            image: "https://images.pexels.com/photos/8490222/pexels-photo-8490222.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2",
+            name: "Emily Davis",
+            text: "The countdown timers create real urgency. Got some amazing bargains!",
+            photo: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
         }
     ];
-
-
-    const testimonials = [
-    {
-      id: 1,
-      name: "Sarah Johnson",
-      text: "Amazing deals! I saved over $200 on electronics during their flash sale.",
-      photo: "https://images.pexels.com/photos/733872/pexels-photo-733872.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      id: 2,
-      name: "Mike Chen",
-      text: "Fast shipping and great customer service. Highly recommend SwiftBuy!",
-      photo: "https://images.pexels.com/photos/1933873/pexels-photo-1933873.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    },
-    {
-      id: 3,
-      name: "Emily Davis",
-      text: "The countdown timers create real urgency. Got some amazing bargains!",
-      photo: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-    }
-  ];
 
     return (
         <div>
             <Navbar cartCount={cartCount}
-            currentPages={'home'} />
-            
+                currentPages={'home'} />
+
             {/* Search Bar */}
-            <div className="bg-gray-50 py-4">
+            {/* <div className="bg-gray-50 py-4">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="relative max-w-lg mx-auto">
                         <div className="absolute left-3 top-1/2 transform -translate-y-1/2">🔍</div>
@@ -78,7 +67,7 @@ const HomePage = () => {
                         />
                     </div>
                 </div>
-            </div>
+            </div> */}
 
             {/* Hero Section */}
             <div className="relative bg-gradient-to-r from-red-600 to-pink-600 text-white py-20">
@@ -136,6 +125,14 @@ const HomePage = () => {
                                 addToCart={addToCart}
                             />
                         ))}
+                    </div>
+                    <div className="flex justify-center mt-8">
+                        <button
+                            className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 px-8 rounded-lg shadow-md transition-colors"
+                            onClick={() => router.push('/products')}
+                        >
+                            View All
+                        </button>
                     </div>
                 </div>
             </div>
