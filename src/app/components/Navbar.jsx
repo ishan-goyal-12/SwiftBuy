@@ -2,6 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useRouter } from 'next/navigation';
 
 function Navbar({ cartCount }) {
   const pathname = usePathname();
@@ -11,6 +12,8 @@ function Navbar({ cartCount }) {
     { id: 'about', label: 'About', path: '/about' },
     { id: 'blog', label: 'Blog', path: '/blog' }
   ];
+      const router = useRouter();
+  
 
   return (
     <nav className="bg-white shadow-lg sticky top-0 z-50">
@@ -50,7 +53,8 @@ function Navbar({ cartCount }) {
                 </span>
               }
             </div>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer">
+            <button className="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer"
+              onClick={() => router.push('/login')}>
               Login
             </button>
             <button className="bg-red-600 text-white px-4 py-2 rounded-md text-sm font-medium cursor-pointer">
