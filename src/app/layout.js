@@ -1,14 +1,22 @@
 'use client';
-import Footer from "./components/Footer";
-import "./globals.css";
 
-export default function RootLayout({ children }) {
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
+import "./globals.css";
+import {
+  ClerkProvider,
+} from "@clerk/nextjs";
+
+export default function Layout({ children }) {
   return (
-    <html lang="en">
-      <body>
-        {children}
-        <Footer />
-      </body>
-    </html>
+    <ClerkProvider>
+      <html lang="en">
+        <body>
+          <Navbar />
+          {children}
+          <Footer />
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }

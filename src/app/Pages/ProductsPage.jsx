@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import ProductCard from '../components/ProductCard.jsx';
 import { api } from '../utils/api.js';
 import { transformProduct, formatCategoryName } from '../utils/productHelpers.js';
-import Navbar from '../components/Navbar.jsx';
+import { useCartStore } from '../store/cartStore';
 
 function ProductsPage() {
     const [products, setProducts] = useState([]);
@@ -12,11 +12,9 @@ function ProductsPage() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    // State to manage cart count
-    const [cartCount, setCartCount] = useState(0);
-
+    const addToCartStore = useCartStore((state) => state.addToCart);
     const addToCarts = (product) => {
-        setCartCount(prev => prev + 1);
+        addToCartStore(product);
     };
 
     // Fetch all products and categories on component mount
@@ -146,7 +144,6 @@ function ProductsPage() {
 
     return (
         <div>
-            <Navbar cartCount={cartCount} />
             {/* Heading Section */}
             <div className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

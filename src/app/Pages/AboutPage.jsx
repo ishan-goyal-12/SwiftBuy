@@ -1,6 +1,4 @@
 import React from 'react'
-import Navbar from '../components/Navbar';
-
 const AboutPage = () => {
 
   const teamMembers = [
@@ -36,9 +34,6 @@ const AboutPage = () => {
 
   return (
     <div>
-      {/* Navbar */}
-      <Navbar cartCount={0} />
-
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
@@ -92,8 +87,7 @@ const AboutPage = () => {
                 To become the world's most trusted flash sale platform, where customers
                 discover amazing deals daily and brands connect with engaged audiences
                 through time-sensitive, value-driven commerce experiences.
-              </p>
-            </div>
+              </p>     </div>
           </div>
         </div>
       </div>

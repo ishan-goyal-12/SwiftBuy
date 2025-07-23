@@ -1,14 +1,14 @@
 'use client'
 import React, { useState, useEffect } from 'react'
+import { useCartStore } from '../store/cartStore';
 import ProductCard from '../components/ProductCard'
-import Navbar from '../components/Navbar'
 import { api } from '../utils/api.js'
 import { transformProduct } from '../utils/productHelpers'
 import { useRouter } from 'next/navigation'
 
 
 const HomePage = () => {
-    const [cartCount, setCartCount] = useState(0);
+    const addToCartStore = useCartStore((state) => state.addToCart);
     const [flashProducts, setFlashProducts] = useState([]);
     const router = useRouter();
 
@@ -26,7 +26,7 @@ const HomePage = () => {
     }, []);
 
     const addToCart = (product) => {
-        setCartCount(prev => prev + 1);
+        addToCartStore(product);
     };
 
     const testimonials = [
@@ -52,8 +52,6 @@ const HomePage = () => {
 
     return (
         <div>
-            <Navbar cartCount={cartCount}
-                currentPages={'home'} />
 
             {/* Search Bar */}
             {/* <div className="bg-gray-50 py-4">

@@ -1,5 +1,4 @@
 import React from 'react';
-import Navbar from '../components/Navbar';
 
 function BlogPage() {
   const blogPosts = [
@@ -67,8 +66,6 @@ function BlogPage() {
 
   return (
     <div>
-      {/* Navbar */}
-      <Navbar cartCount={0} />
 
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
@@ -138,16 +135,17 @@ function BlogPage() {
             <p className="text-lg text-gray-600 mb-6">
               Subscribe to our newsletter for the latest flash sale strategies and exclusive deal alerts.
             </p>
-            <div className="max-w-md mx-auto flex">
+            <form className="max-w-md mx-auto flex">
               <input
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 px-4 py-3 border border-gray-300 rounded-l-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                required
               />
-              <button className="bg-blue-600 text-white px-6 py-3 rounded-r-lg font-medium">
+              <button type="submit" className="bg-blue-600 text-white px-6 py-3 rounded-r-lg font-medium">
                 Subscribe
               </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>

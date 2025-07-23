@@ -1,4 +1,6 @@
 'use client'
+export const metadata = { title: 'SwiftBuy-Login' };
+'use client'
 import React from 'react'
 import LoginPage from '../auth/LoginPage'
 
