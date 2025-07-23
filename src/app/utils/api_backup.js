@@ -1,7 +1,6 @@
 const BASE_URL = 'https://api.escuelajs.co/api/v1';
 
 export const api = {
-    // Get all products
     getAllProducts: async () => {
         try {
             const response = await fetch(`${BASE_URL}/products`);
@@ -15,7 +14,6 @@ export const api = {
         }
     },
 
-    // Get single product by ID
     getProductById: async (id) => {
         try {
             const response = await fetch(`${BASE_URL}/products/${id}`);
@@ -29,7 +27,6 @@ export const api = {
         }
     },
 
-    // Get all categories
     getCategories: async () => {
         try {
             const response = await fetch(`${BASE_URL}/categories`);
@@ -43,7 +40,6 @@ export const api = {
         }
     },
 
-    // Get products by category (by category id)
     getProductsByCategory: async (categoryId) => {
         try {
             const response = await fetch(`${BASE_URL}/categories/${categoryId}/products`);

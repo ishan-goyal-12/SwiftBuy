@@ -15,7 +15,6 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
             ...prev,
             [name]: value
         }));
-        // Clear error when user starts typing
         if (errors[name]) {
             setErrors(prev => ({
                 ...prev,
@@ -58,7 +57,6 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
 
         setIsLoading(true);
 
-        // Simulate API call
         setTimeout(() => {
             setIsLoading(false);
             onLogin(formData);
@@ -68,17 +66,17 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
     return (
         <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
-                {/* Header */}
+                
                 <div className="text-center">
                     <div className='scale-300 mb-6'>🙋🏻‍♂️</div>
                     <h2 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h2>
                     <p className="text-gray-600">Sign in to your FlashDeals account</p>
                 </div>
 
-                {/* Login Form */}
+                
                 <div className="bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
                     <form onSubmit={handleSubmit} className="space-y-6">
-                        {/* Email Field */}
+                        
                         <div>
                             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
                                 Email Address
@@ -103,7 +101,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                             )}
                         </div>
 
-                        {/* Password Field */}
+                        
                         <div>
                             <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
                                 Password
@@ -139,7 +137,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                             )}
                         </div>
 
-                        {/* Remember Me & Forgot Password */}
+                        
                         <div className="flex items-center justify-between">
                             <div className="flex items-center">
                                 <input
@@ -160,7 +158,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                             </button>
                         </div>
 
-                        {/* Dummy Data Button */}
+                        
                         <button
                             type="button"
                             onClick={fillDummyData}
@@ -169,7 +167,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                             Fill Dummy Data
                         </button>
 
-                        {/* Submit Button */}
+                        
                         <button
                             type="submit"
                             disabled={isLoading}
@@ -189,7 +187,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                         </button>
                     </form>
 
-                    {/* Divider */}
+                    
                     <div className="mt-6">
                         <div className="relative">
                             <div className="absolute inset-0 flex items-center">
@@ -201,7 +199,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                         </div>
                     </div>
 
-                    {/* Social Login Buttons */}
+                    
                     <div className="mt-6">
                         <button className="w-full cursor-pointer inline-flex justify-center py-2 px-4 border border-gray-300 rounded-lg shadow-sm bg-white text-sm font-medium text-gray-500 hover:bg-gray-50 transition-colors">
                             <svg className="h-5 w-5" viewBox="0 0 24 24">
@@ -215,7 +213,7 @@ function LoginPage({ onSwitchToSignup, onLogin }) {
                     </div>
                 </div>
 
-                {/* Sign Up Link */}
+                
                 <div className="text-center">
                     <p className="text-gray-600">
                         Don't have an account?{' '}

@@ -1,5 +1,7 @@
 import React from 'react';
 import CountdownTimer from './CountdownTimer.jsx';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 function ProductCard({ product, addToCart }) {
     const discountPercent = Math.round(
@@ -37,11 +39,16 @@ function ProductCard({ product, addToCart }) {
                 </div>
 
                 <button
-                    onClick={() => addToCart(product)}
+                    onClick={() => {
+                        toast("Added to cart!"),
+                        addToCart(product)
+                    }}
                     className="w-full bg-red-600 text-white py-2 px-4 rounded-md font-medium cursor-pointer"
                 >
                     Add to Cart
                 </button>
+                <ToastContainer position="bottom-right" />
+
             </div>
         </div>
     );

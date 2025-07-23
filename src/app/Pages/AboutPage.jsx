@@ -34,7 +34,7 @@ const AboutPage = () => {
 
   return (
     <div>
-      {/* Hero Section */}
+      
       <div className="relative bg-gradient-to-r from-blue-600 to-purple-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
@@ -47,7 +47,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Company History */}
+      
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto text-center">
@@ -62,7 +62,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Mission & Vision */}
+      
       <div className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -92,7 +92,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Team Section */}
+      
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
@@ -122,7 +122,7 @@ const AboutPage = () => {
         </div>
       </div>
 
-      {/* Stats Section */}
+      
       <div className="py-16 bg-red-600 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 text-center">

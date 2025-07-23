@@ -53,21 +53,7 @@ const HomePage = () => {
     return (
         <div>
 
-            {/* Search Bar */}
-            {/* <div className="bg-gray-50 py-4">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="relative max-w-lg mx-auto">
-                        <div className="absolute left-3 top-1/2 transform -translate-y-1/2">🔍</div>
-                        <input
-                            type="text"
-                            placeholder="Search for flash deals, products..."
-                            className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg text-gray-700 bg-white focus:border-transparent"
-                        />
-                    </div>
-                </div>
-            </div> */}
 
-            {/* Hero Section */}
             <div className="relative bg-gradient-to-r from-red-600 to-pink-600 text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -107,7 +93,6 @@ const HomePage = () => {
                 </div>
             </div>
 
-            {/* Flash Products */}
             <div className="py-16 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">
@@ -135,7 +120,6 @@ const HomePage = () => {
                 </div>
             </div>
 
-            {/* Key Selling Points */}
             <div className="py-16">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-16">
@@ -184,7 +168,6 @@ const HomePage = () => {
                 </div>
             </div>
 
-            {/* Testimonials */}
             <div className="py-16 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="text-center mb-12">

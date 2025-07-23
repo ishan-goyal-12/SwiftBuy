@@ -1,7 +1,6 @@
 const BASE_URL = 'https://dummyjson.com';
 
 export const api = {
-    // Get all products
     getAllProducts: async () => {
         try {
             const response = await fetch(`${BASE_URL}/products`);
@@ -9,7 +8,6 @@ export const api = {
                 throw new Error('Failed to fetch products');
             }
             const data = await response.json();
-            // The API returns { products: [...] }
             return data.products;
         } catch (error) {
             console.error('Error fetching products:', error);
@@ -17,7 +15,6 @@ export const api = {
         }
     },
 
-    // Get single product by ID
     getProductById: async (id) => {
         try {
             const response = await fetch(`${BASE_URL}/products/${id}`);
@@ -31,7 +28,6 @@ export const api = {
         }
     },
 
-    // Get all categories (dummyjson supports /products/categories)
     getCategories: async () => {
         try {
             const response = await fetch(`${BASE_URL}/products/categories`);

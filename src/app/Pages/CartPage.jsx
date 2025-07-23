@@ -3,6 +3,8 @@
 import React, { useState } from 'react';
 import { Minus, Plus, Trash2, ShoppingBag, ArrowLeft, CreditCard } from 'lucide-react';
 import { useCartStore } from '../store/cartStore';
+import { ToastContainer, toast } from 'react-toastify';
+
 
 
 function CartPage({ onBackToShopping }) {
@@ -64,9 +66,12 @@ function CartPage({ onBackToShopping }) {
 
   const handleCheckout = () => {
     setIsCheckingOut(true);
+
+    setTimeout(() => {
+      toast("Order placed successfully! Thank you for your purchase.");
+    }, 2000);
     
     setTimeout(() => {
-      alert('Order placed successfully! Thank you for your purchase.');
       clearCart();
       setIsCheckingOut(false);
       if (typeof onBackToShopping === 'function') {
@@ -74,7 +79,7 @@ function CartPage({ onBackToShopping }) {
       } else {
         window.location.href = '/products';
       }
-    }, 2000);
+    }, 4000);
   };
 
   if (cart.length === 0) {
@@ -105,7 +110,7 @@ function CartPage({ onBackToShopping }) {
       </div>
     );
   }
-
+  
   
   const groupedCart = Object.values(cart.reduce((acc, item) => {
     if (!acc[item.id]) {
@@ -115,7 +120,7 @@ function CartPage({ onBackToShopping }) {
     }
     return acc;
   }, {}));
-
+  
   return (
     <div className="min-h-screen bg-gray-50 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -306,6 +311,7 @@ function CartPage({ onBackToShopping }) {
                   </div>
                 )}
               </button>
+                <ToastContainer position="bottom-right" />
               
 
               <p className="text-xs text-gray-500 text-center mt-4">

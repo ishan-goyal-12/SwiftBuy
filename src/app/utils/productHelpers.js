@@ -1,11 +1,9 @@
-// Helper function to calculate sale price (30-70% discount)
 export const calculateSalePrice = (originalPrice) => {
     const discountPercent = Math.floor(Math.random() * 41) + 30;
     const salePrice = originalPrice * (1 - discountPercent / 100);
     return Math.round(salePrice * 100) / 100;
 };
 
-// Helper function to transform API product to our format
 export const transformProduct = (apiProduct) => {
     const salePrice = calculateSalePrice(apiProduct.price);
 

@@ -23,13 +23,13 @@ function Navbar() {
     <nav className="bg-white shadow-lg sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
-          {/* Logo */}
+          
           <Link href="/" className="flex items-center cursor-pointer">
             <div className="mr-2 scale-180">⚡️</div>
             <span className="text-2xl font-bold text-gray-900">SwiftBuy</span>
           </Link>
 
-          {/* Navigation Links */}
+          
           <div className="hidden md:block">
             <div className="ml-10 flex items-baseline space-x-4">
               {navItems.map((item) => (
@@ -47,7 +47,7 @@ function Navbar() {
             </div>
           </div>
 
-          {/* Cart and Auth Buttons */}
+          
           <div className="flex flex-row items-center space-x-4">
             <div className="relative">
               <Link href="/cart">

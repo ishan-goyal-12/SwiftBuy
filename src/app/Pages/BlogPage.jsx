@@ -67,7 +67,7 @@ function BlogPage() {
   return (
     <div>
 
-      {/* Hero Section */}
+      
       <div className="relative bg-gradient-to-r from-green-600 to-blue-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6">
@@ -79,7 +79,7 @@ function BlogPage() {
         </div>
       </div>
 
-      {/* Blog Posts */}
+      
       <div className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="space-y-12">
@@ -127,7 +127,7 @@ function BlogPage() {
             ))}
           </div>
 
-          {/* Newsletter Signup */}
+          
           <div className="mt-16 bg-gray-50 rounded-lg p-8 text-center">
             <h3 className="text-2xl font-bold text-gray-900 mb-4">
               Stay Updated with Flash Sale Tips

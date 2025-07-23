@@ -17,7 +17,6 @@ function ProductsPage() {
         addToCartStore(product);
     };
 
-    // Fetch all products and categories on component mount
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -38,7 +37,7 @@ function ProductsPage() {
         };
 
         fetchData();
-    }, []); // This useEffect runs only once when the component mounts (loads when page refreshes)
+    }, []);
 
     useEffect(() => {
         if (typeof window !== 'undefined') {
@@ -50,16 +49,13 @@ function ProductsPage() {
         setCurrentPage(1);
     }, [selectedCategory]);
 
-    // Filter products by category
     const filteredProducts = selectedCategory === 'all'
         ? products
         : products.filter(product => product.category === selectedCategory);
 
-    // Pagination state
     const [currentPage, setCurrentPage] = useState(1);
     const productsPerPage = 12;
 
-    // Calculate paginated products
     const indexOfLastProduct = currentPage * productsPerPage;
     const indexOfFirstProduct = indexOfLastProduct - productsPerPage;
     const currentProducts = filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct);
@@ -144,7 +140,7 @@ function ProductsPage() {
 
     return (
         <div>
-            {/* Heading Section */}
+            
             <div className="relative bg-gradient-to-r from-purple-600 to-pink-600 text-white py-20">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
                     <h1 className="text-4xl lg:text-6xl font-bold mb-6">
@@ -156,7 +152,7 @@ function ProductsPage() {
                 </div>
             </div>
 
-            {/* Category Selection */}
+            
             <div className="py-8 bg-gray-50">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex flex-wrap justify-center gap-3 mt-6">
@@ -189,7 +185,7 @@ function ProductsPage() {
                 </div>
             </div>
 
-            {/* Products Grid */}
+            
             <div className="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 {filteredProducts.length === 0 ? (
                     <div className="text-center py-12">
@@ -208,7 +204,7 @@ function ProductsPage() {
                             ))}
                         </div>
 
-                        {/* Pagination Controls */}
+                        
                         {totalPages > 1 && (
                             <div className="flex justify-center items-center gap-2 mb-8">
                                 {currentPage !== 1 && (
@@ -242,7 +238,7 @@ function ProductsPage() {
                 )}
             </div>
 
-            {/* FAQ Section */}
+            
             <div className="py-16 bg-gray-50">
                 <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
                     <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
